@@ -1,0 +1,299 @@
+{
+  "patients": [
+    {
+      "id": "1",
+      "name": "María García López",
+      "email": "maria.garcia@email.com",
+      "phone": "+34 612 345 678",
+      "lastVisit": "2024-01-15",
+      "status": "active",
+      "treatments": 8,
+      "totalSpent": 2450,
+      "createdAt": "2023-06-15T10:00:00Z"
+    },
+    {
+      "id": "2",
+      "name": "Ana Martínez Ruiz",
+      "email": "ana.martinez@email.com",
+      "phone": "+34 623 456 789",
+      "lastVisit": "2024-01-12",
+      "status": "active",
+      "treatments": 5,
+      "totalSpent": 1200,
+      "createdAt": "2023-07-20T14:30:00Z"
+    },
+    {
+      "id": "3",
+      "name": "Carlos Sánchez Torres",
+      "email": "carlos.sanchez@email.com",
+      "phone": "+34 634 567 890",
+      "lastVisit": "2024-01-10",
+      "status": "pending",
+      "treatments": 3,
+      "totalSpent": 850,
+      "createdAt": "2023-08-05T09:15:00Z"
+    },
+    {
+      "id": "4",
+      "name": "Laura Díaz Hernández",
+      "email": "laura.diaz@email.com",
+      "phone": "+34 645 678 901",
+      "lastVisit": "2024-01-08",
+      "status": "active",
+      "treatments": 12,
+      "totalSpent": 3800,
+      "createdAt": "2023-03-10T16:45:00Z"
+    },
+    {
+      "id": "5",
+      "name": "Pedro Gómez Ruiz",
+      "email": "pedro.gomez@email.com",
+      "phone": "+34 656 789 012",
+      "lastVisit": "2024-01-05",
+      "status": "inactive",
+      "treatments": 2,
+      "totalSpent": 450,
+      "createdAt": "2023-09-01T11:20:00Z"
+    },
+    {
+      "id": "6",
+      "name": "Sofia Fernández Mora",
+      "email": "sofia.fernandez@email.com",
+      "phone": "+34 667 890 123",
+      "lastVisit": "2024-01-03",
+      "status": "active",
+      "treatments": 6,
+      "totalSpent": 1800,
+      "createdAt": "2023-04-25T13:00:00Z"
+    },
+    {
+      "id": "7",
+      "name": "Miguel Ángel López",
+      "email": "miguel.lopez@email.com",
+      "phone": "+34 678 901 234",
+      "lastVisit": "2024-01-01",
+      "status": "active",
+      "treatments": 4,
+      "totalSpent": 980,
+      "createdAt": "2023-10-12T15:30:00Z"
+    },
+    {
+      "id": "8",
+      "name": "Elena Rodríguez Gil",
+      "email": "elena.rodriguez@email.com",
+      "phone": "+34 689 012 345",
+      "lastVisit": "2023-12-28",
+      "status": "pending",
+      "treatments": 1,
+      "totalSpent": 250,
+      "createdAt": "2023-11-08T10:45:00Z"
+    },
+    {
+      "id": "9",
+      "name": "Javier Navarro Serrano",
+      "email": "javier.navarro@email.com",
+      "phone": "+34 690 123 456",
+      "lastVisit": "2023-12-25",
+      "status": "active",
+      "treatments": 7,
+      "totalSpent": 2100,
+      "createdAt": "2023-02-28T17:00:00Z"
+    },
+    {
+      "id": "10",
+      "name": "Carmen Castillo Vega",
+      "email": "carmen.castillo@email.com",
+      "phone": "+34 601 234 567",
+      "lastVisit": "2023-12-22",
+      "status": "inactive",
+      "treatments": 3,
+      "totalSpent": 650,
+      "createdAt": "2023-12-01T12:15:00Z"
+    },
+    {
+      "id": "11",
+      "name": "David Morales Pérez",
+      "email": "david.morales@email.com",
+      "phone": "+34 602 345 678",
+      "lastVisit": "2023-12-20",
+      "status": "active",
+      "treatments": 9,
+      "totalSpent": 2750,
+      "createdAt": "2023-01-15T09:30:00Z"
+    },
+    {
+      "id": "12",
+      "name": "Isabel Torres Rivera",
+      "email": "isabel.torres@email.com",
+      "phone": "+34 603 456 789",
+      "lastVisit": "2023-12-18",
+      "status": "active",
+      "treatments": 6,
+      "totalSpent": 1650,
+      "createdAt": "2023-05-20T14:00:00Z"
+    }
+  ],
+  "appointments": [
+    {
+      "id": "1",
+      "patientId": "1",
+      "patientName": "María García López",
+      "date": "2024-01-20",
+      "time": "10:00",
+      "treatment": "Botox",
+      "status": "confirmed",
+      "price": 350,
+      "notes": "Primera vez con este tratamiento"
+    },
+    {
+      "id": "3",
+      "patientId": "2",
+      "patientName": "Ana Martínez Ruiz",
+      "date": "2024-01-20",
+      "time": "14:00",
+      "treatment": "Limpieza facial",
+      "status": "pending",
+      "price": 120,
+      "notes": ""
+    },
+    {
+      "id": "4",
+      "patientId": "6",
+      "patientName": "Sofia Fernández Mora",
+      "date": "2024-01-21",
+      "time": "09:30",
+      "treatment": "Mesoterapia",
+      "status": "confirmed",
+      "price": 280,
+      "notes": "Alérgico a la lidocaína"
+    },
+    {
+      "id": "5",
+      "patientId": "9",
+      "patientName": "Javier Navarro Serrano",
+      "date": "2024-01-21",
+      "time": "11:00",
+      "treatment": "Tratamiento láser",
+      "status": "cancelled",
+      "price": 200,
+      "notes": "Canceló por感冒"
+    },
+    {
+      "id": "6",
+      "patientId": "11",
+      "patientName": "David Morales Pérez",
+      "date": "2024-01-22",
+      "time": "15:30",
+      "treatment": "Botox",
+      "status": "confirmed",
+      "price": 350,
+      "notes": "Mantenimiento trimestral"
+    }
+  ],
+  "treatments": [
+    {
+      "id": "1",
+      "name": "Botox",
+      "price": 350,
+      "duration": 30
+    },
+    {
+      "id": "2",
+      "name": "Relleno dérmico",
+      "price": 450,
+      "duration": 45
+    },
+    {
+      "id": "3",
+      "name": "Limpieza facial",
+      "price": 120,
+      "duration": 60
+    },
+    {
+      "id": "4",
+      "name": "Mesoterapia",
+      "price": 280,
+      "duration": 40
+    },
+    {
+      "id": "5",
+      "name": "Tratamiento láser",
+      "price": 200,
+      "duration": 30
+    },
+    {
+      "id": "6",
+      "name": "Peeling químico",
+      "price": 180,
+      "duration": 45
+    },
+    {
+      "id": "7",
+      "name": "Hilos tensores",
+      "price": 800,
+      "duration": 90
+    },
+    {
+      "id": "8",
+      "name": "Radiofrecuencia",
+      "price": 250,
+      "duration": 50
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "Dr. Alejandro Martínez",
+      "email": "admin@aestheticops.com",
+      "password": "admin123",
+      "role": "admin",
+      "clinicName": "Clínica Martínez Aesthetics"
+    },
+    {
+      "id": "2",
+      "name": "María González",
+      "email": "demo@example.com",
+      "password": "demo",
+      "role": "manager",
+      "clinicName": "Centro de Belleza Elite"
+    },
+    {
+      "id": "1768804809915",
+      "name": "Leonardo",
+      "email": "andrada.leonardo999@gmail.com",
+      "password": "$2b$10$SttYCzOFLgLmQ8ytpv/bEeJenpqR7x1TZqPpx8uc4zZYzTfk7wWgy",
+      "role": "admin",
+      "clinicName": "Jesica Belen",
+      "phone": "2964533842",
+      "createdAt": "2026-01-19T06:40:09.915Z",
+      "subscription": {
+        "plan": "trial",
+        "status": "active",
+        "trialEndsAt": "2026-02-02T06:40:09.915Z"
+      }
+    },
+    {
+      "id": "1768804976520",
+      "name": "Test User",
+      "email": "test@example.com",
+      "password": "$2b$10$C6WX6.Luk.ejNFmPoTolt.YW71u1cWqn5Z9n.NwrP9aXXC/bLC0lG",
+      "role": "admin",
+      "clinicName": "Test Clinic",
+      "phone": "+123456789",
+      "createdAt": "2026-01-19T06:42:56.520Z",
+      "subscription": {
+        "plan": "trial",
+        "status": "active",
+        "trialEndsAt": "2026-02-02T06:42:56.520Z"
+      }
+    }
+  ],
+  "stats": {
+    "totalPatients": 156,
+    "monthlyRevenue": 45200,
+    "pendingAppointments": 12,
+    "activeTreatments": 8,
+    "patientGrowth": 12.5,
+    "revenueGrowth": 8.2
+  }
+}
