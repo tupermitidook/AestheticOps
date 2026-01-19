@@ -1,6 +1,7 @@
 'use client'
 
 import * as React from 'react'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { toast } from 'sonner'
 import { Sidebar, DashboardHeader } from '@/components/dashboard/sidebar'
@@ -8,8 +9,8 @@ import { GlassCard } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { useAuth } from '@/lib/api-service'
 import { cn } from '@/lib/utils'
-import { 
-  Save, Loader2, Building2, User, Bell, CreditCard, Shield, 
+import {
+  Save, Loader2, Building2, User, Bell, CreditCard, Shield,
   Globe, Mail, Phone, MapPin, Calendar
 } from 'lucide-react'
 
@@ -17,7 +18,7 @@ export default function SettingsPage() {
   const { user } = useAuth()
   const [loading, setLoading] = React.useState(false)
   const [activeTab, setActiveTab] = React.useState('profile')
-  
+
   const [profileData, setProfileData] = React.useState({
     name: user?.name || '',
     email: user?.email || '',
@@ -106,10 +107,10 @@ export default function SettingsPage() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
       <Sidebar />
-      
+
       <div className="lg:ml-[280px] transition-all duration-300">
         <DashboardHeader />
-        
+
         <main className="p-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -369,7 +370,7 @@ export default function SettingsPage() {
                       </p>
                     )}
                   </div>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="p-4 rounded-xl bg-slate-100 dark:bg-slate-800">
                       <p className="text-sm text-muted-foreground mb-1">Plan Básico</p>
@@ -403,8 +404,12 @@ export default function SettingsPage() {
                   </div>
 
                   <div className="flex gap-3">
-                    <Button variant="outline">Cambiar plan</Button>
-                    <Button variant="outline">Ver facturas</Button>
+                    <Button variant="outline" onClick={() => toast.info('Contacta con soporte para cambiar tu plan')}>
+                      Cambiar plan
+                    </Button>
+                    <Button variant="outline" asChild>
+                      <Link href="/dashboard/billing">Ver facturas</Link>
+                    </Button>
                   </div>
                 </div>
               </GlassCard>

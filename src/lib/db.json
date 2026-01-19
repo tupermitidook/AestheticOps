@@ -245,7 +245,7 @@
       "id": "1",
       "name": "Dr. Alejandro Martínez",
       "email": "admin@aestheticops.com",
-      "password": "admin123",
+      "password": "$2b$10$jo/aNQnffXRbz5N6gpFy3e.fXNxv9yOA.yxZYMoNMX/PQCaaoYQca",
       "role": "admin",
       "clinicName": "Clínica Martínez Aesthetics"
     },
@@ -285,6 +285,21 @@
         "plan": "trial",
         "status": "active",
         "trialEndsAt": "2026-02-02T06:42:56.520Z"
+      }
+    },
+    {
+      "id": "1768809122107",
+      "name": "Test Userq",
+      "email": "aaaa@gmail.com",
+      "password": "$2b$10$90l6Ybc0VmwR9MiOW87l5e39sNUc2qVoZUbHWXDDsp4uBR3JtiKXu",
+      "role": "admin",
+      "clinicName": "rouseeee",
+      "phone": "2222",
+      "createdAt": "2026-01-19T07:52:02.107Z",
+      "subscription": {
+        "plan": "trial",
+        "status": "active",
+        "trialEndsAt": "2026-02-02T07:52:02.108Z"
       }
     }
   ],

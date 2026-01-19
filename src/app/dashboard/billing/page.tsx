@@ -8,7 +8,7 @@ import { GlassCard } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { useAuth } from '@/lib/api-service'
 import { cn } from '@/lib/utils'
-import { 
+import {
   Download, FileText, Plus, Filter, Search, Calendar,
   CheckCircle, Clock, XCircle, Euro
 } from 'lucide-react'
@@ -31,6 +31,7 @@ export default function BillingPage() {
   const [loading, setLoading] = React.useState(true)
   const [searchQuery, setSearchQuery] = React.useState('')
   const [statusFilter, setStatusFilter] = React.useState<string>('all')
+  const [showInvoiceModal, setShowInvoiceModal] = React.useState(false)
 
   React.useEffect(() => {
     loadInvoices()
@@ -51,7 +52,7 @@ export default function BillingPage() {
   }
 
   const filteredInvoices = invoices.filter(invoice => {
-    const matchesSearch = 
+    const matchesSearch =
       invoice.patientName.toLowerCase().includes(searchQuery.toLowerCase()) ||
       invoice.invoiceNumber.toLowerCase().includes(searchQuery.toLowerCase())
     const matchesStatus = statusFilter === 'all' || invoice.status === statusFilter
@@ -108,10 +109,10 @@ export default function BillingPage() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
       <Sidebar />
-      
+
       <div className="lg:ml-[280px] transition-all duration-300">
         <DashboardHeader />
-        
+
         <main className="p-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -125,12 +126,58 @@ export default function BillingPage() {
                   Gestiona las facturas y pagos de tu clínica
                 </p>
               </div>
-              <Button>
+              <Button onClick={() => setShowInvoiceModal(true)}>
                 <Plus className="w-4 h-4 mr-2" />
                 Nueva Factura
               </Button>
             </div>
           </motion.div>
+
+          {/* Invoice Modal */}
+          {showInvoiceModal && (
+            <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 backdrop-blur-sm" onClick={() => setShowInvoiceModal(false)}>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl max-w-lg w-full overflow-hidden"
+                onClick={e => e.stopPropagation()}
+              >
+                <div className="p-6 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center">
+                  <h2 className="text-xl font-bold">Nueva Factura</h2>
+                  <button onClick={() => setShowInvoiceModal(false)}>
+                    <XCircle className="w-6 h-6 text-muted-foreground hover:text-foreground" />
+                  </button>
+                </div>
+                <div className="p-6 space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-1.5">Paciente</label>
+                    <input type="text" className="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border-transparent focus:ring-2 focus:ring-primary outline-none" placeholder="Buscar paciente..." />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1.5">Concepto</label>
+                    <input type="text" className="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border-transparent focus:ring-2 focus:ring-primary outline-none" placeholder="Consulta dermatológica" />
+                  </div>
+                  <div className="flex gap-4">
+                    <div className="flex-1">
+                      <label className="block text-sm font-medium mb-1.5">Importe (€)</label>
+                      <input type="number" className="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border-transparent focus:ring-2 focus:ring-primary outline-none" placeholder="0.00" />
+                    </div>
+                    <div className="flex-1">
+                      <label className="block text-sm font-medium mb-1.5">Fecha Venc.</label>
+                      <input type="date" className="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border-transparent focus:ring-2 focus:ring-primary outline-none" />
+                    </div>
+                  </div>
+                  <div className="pt-4 flex justify-end gap-2">
+                    <Button variant="ghost" onClick={() => setShowInvoiceModal(false)}>Cancelar</Button>
+                    <Button onClick={() => {
+                      toast.success('Factura creada correctamente');
+                      setShowInvoiceModal(false);
+                    }}>Crear Factura</Button>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          )}
 
           {/* Stats */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">

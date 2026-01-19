@@ -9,9 +9,9 @@ import { Button, ShimmerButton } from '@/components/ui/button'
 import { TableSkeleton, FormSkeleton } from '@/components/ui/skeleton'
 import { useAuth, fetchPatients, createPatient, updatePatient, deletePatient } from '@/lib/api-service'
 import { cn, formatDate, getAvatarColor, getInitials } from '@/lib/utils'
-import { 
-  Search, Plus, Download, Filter, Eye, Edit, Trash2, 
-  ChevronLeft, ChevronRight, ArrowUpDown, X, Check, Loader2 
+import {
+  Search, Plus, Download, Filter, Eye, Edit, Trash2,
+  ChevronLeft, ChevronRight, ArrowUpDown, X, Check, Loader2, Tag
 } from 'lucide-react'
 
 interface Patient {
@@ -24,6 +24,15 @@ interface Patient {
   treatments: number
   totalSpent: number
   createdAt: string
+  tags?: string[]
+}
+
+const getPatientTags = (patient: Patient) => {
+  const tags = patient.tags || []
+  if (patient.totalSpent > 1000 && !tags.includes('VIP')) tags.push('VIP')
+  if (patient.status === 'active' && !tags.includes('Recurrente')) tags.push('Recurrente')
+  if (patient.status === 'inactive' && !tags.includes('Inactivo')) tags.push('Inactivo')
+  return tags
 }
 
 export default function PatientsPage() {
@@ -59,7 +68,7 @@ export default function PatientsPage() {
   }
 
   const filteredPatients = patients.filter(patient => {
-    const matchesSearch = 
+    const matchesSearch =
       patient.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       patient.email.toLowerCase().includes(searchQuery.toLowerCase())
     const matchesStatus = statusFilter === 'all' || patient.status === statusFilter
@@ -133,10 +142,10 @@ export default function PatientsPage() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
       <Sidebar />
-      
+
       <div className="lg:ml-[280px] transition-all duration-300">
         <DashboardHeader />
-        
+
         <main className="p-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -164,7 +173,7 @@ export default function PatientsPage() {
                   />
                 </div>
               </div>
-              
+
               <div className="flex items-center gap-3">
                 <select
                   value={statusFilter}
@@ -176,12 +185,12 @@ export default function PatientsPage() {
                   <option value="pending">Pendiente</option>
                   <option value="inactive">Inactivo</option>
                 </select>
-                
+
                 <Button variant="outline" size="sm">
                   <Download className="w-4 h-4 mr-2" />
                   Exportar
                 </Button>
-                
+
                 <ShimmerButton size="sm" onClick={() => {
                   setEditingPatient(null)
                   setFormData({ name: '', email: '', phone: '' })
@@ -233,9 +242,18 @@ export default function PatientsPage() {
                               </div>
                               <div>
                                 <p className="font-medium">{patient.name}</p>
-                                <p className="text-xs text-muted-foreground hidden sm:block">
-                                  {patient.treatments} tratamientos
-                                </p>
+                                <div className="flex gap-1 mt-1">
+                                  {getPatientTags(patient).map(tag => (
+                                    <span key={tag} className={cn(
+                                      "inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium",
+                                      tag === 'VIP' ? "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400" :
+                                        tag === 'Recurrente' ? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400" :
+                                          "bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-400"
+                                    )}>
+                                      {tag}
+                                    </span>
+                                  ))}
+                                </div>
                               </div>
                             </div>
                           </td>
