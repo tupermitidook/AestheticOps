@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { ThemeToggle } from '@/components/ui/theme-toggle'
@@ -19,23 +19,26 @@ interface NavItem {
  */
 const NavLink = ({
   item,
-  active
+  active,
+  isMobile
 }: {
   item: NavItem
   active?: boolean
+  isMobile?: boolean
 }) => {
   const [isOpen, setIsOpen] = React.useState(false)
 
   if (item.children) {
     return (
       <div
-        className="relative"
-        onMouseEnter={() => setIsOpen(true)}
-        onMouseLeave={() => setIsOpen(false)}
+        className={cn("relative", isMobile && "w-full")}
+        onMouseEnter={() => !isMobile && setIsOpen(true)}
+        onMouseLeave={() => !isMobile && setIsOpen(false)}
       >
         <button
+          onClick={() => setIsOpen(!isOpen)}
           className={cn(
-            'flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary',
+            'flex items-center justify-between w-full gap-1 text-sm font-medium transition-colors hover:text-primary py-2',
             active ? 'text-primary' : 'text-muted-foreground'
           )}
         >
@@ -47,30 +50,35 @@ const NavLink = ({
         </button>
 
         {/* Dropdown menu */}
-        <motion.div
-          initial={{ opacity: 0, y: 10, pointerEvents: 'none' }}
-          animate={{
-            opacity: isOpen ? 1 : 0,
-            y: isOpen ? 0 : 10,
-            pointerEvents: isOpen ? 'auto' : 'none'
-          }}
-          className="absolute top-full left-0 mt-2 w-64 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-xl border border-white/20 shadow-xl overflow-hidden z-50"
-        >
-          <div className="p-2">
-            {item.children.map((child, index) => (
-              <Link
-                key={index}
-                href={child.href}
-                className="block px-4 py-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-              >
-                <p className="font-medium text-sm">{child.label}</p>
-                {child.description && (
-                  <p className="text-xs text-muted-foreground mt-1">{child.description}</p>
-                )}
-              </Link>
-            ))}
-          </div>
-        </motion.div>
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={isMobile ? { height: 0, opacity: 0 } : { opacity: 0, y: 10 }}
+              animate={isMobile ? { height: 'auto', opacity: 1 } : { opacity: 1, y: 0 }}
+              exit={isMobile ? { height: 0, opacity: 0 } : { opacity: 0, y: 10 }}
+              className={cn(
+                isMobile
+                  ? "relative w-full pl-4 border-l border-slate-200 dark:border-slate-800 ml-2 overflow-hidden"
+                  : "absolute top-full left-0 mt-2 w-64 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-xl border border-white/20 shadow-xl overflow-hidden z-50"
+              )}
+            >
+              <div className="p-2">
+                {item.children.map((child, index) => (
+                  <Link
+                    key={index}
+                    href={child.href}
+                    className="block px-4 py-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                  >
+                    <p className="font-medium text-sm">{child.label}</p>
+                    {child.description && (
+                      <p className="text-xs text-muted-foreground mt-1">{child.description}</p>
+                    )}
+                  </Link>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     )
   }
@@ -79,12 +87,12 @@ const NavLink = ({
     <Link
       href={item.href}
       className={cn(
-        'text-sm font-medium transition-colors hover:text-primary relative',
+        'text-sm font-medium transition-colors hover:text-primary relative block py-2',
         active ? 'text-primary' : 'text-muted-foreground'
       )}
     >
       {item.label}
-      {active && (
+      {active && !isMobile && (
         <motion.div
           layoutId="activeNav"
           className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
@@ -205,7 +213,7 @@ export function Navbar() {
       >
         <div className="px-4 py-4 space-y-4">
           {navItems.map((item, index) => (
-            <NavLink key={index} item={item} />
+            <NavLink key={index} item={item} isMobile={true} />
           ))}
           <div className="pt-4 border-t border-border space-y-3">
             <Button variant="ghost" className="w-full justify-start" asChild>

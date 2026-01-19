@@ -12,6 +12,11 @@ interface User {
   role: 'admin' | 'manager' | 'staff'
   avatar?: string
   clinicName: string
+  subscription?: {
+    plan: 'trial' | 'basic' | 'pro' | 'enterprise'
+    status: 'active' | 'inactive' | 'expired'
+    trialEndsAt?: string
+  }
 }
 
 /**
@@ -49,10 +54,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const login = async (email: string, password: string): Promise<boolean> => {
     setIsLoading(true)
-    
+
     // Simular llamada a API
     await new Promise(resolve => setTimeout(resolve, 1500))
-    
+
     // Credenciales de demo
     if (email === 'admin@aestheticops.com' && password === 'demo123') {
       const mockUser: User = {
@@ -67,7 +72,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setIsLoading(false)
       return true
     }
-    
+
     // Usuario de prueba
     if (email === 'demo@example.com' && password === 'demo') {
       const mockUser: User = {
@@ -82,7 +87,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setIsLoading(false)
       return true
     }
-    
+
     setIsLoading(false)
     return false
   }
@@ -93,13 +98,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <AuthContext.Provider 
-      value={{ 
-        user, 
-        isLoading, 
-        login, 
-        logout, 
-        isAuthenticated: !!user 
+    <AuthContext.Provider
+      value={{
+        user,
+        isLoading,
+        login,
+        logout,
+        isAuthenticated: !!user
       }}
     >
       {children}

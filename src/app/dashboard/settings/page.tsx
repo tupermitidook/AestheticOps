@@ -366,7 +366,7 @@ export default function SettingsPage() {
                     {user?.subscription?.plan === 'trial' && (
                       <p className="text-sm text-muted-foreground">
                         Tu prueba gratuita termina el{' '}
-                        {new Date(user.subscription.trialEndsAt).toLocaleDateString('es-ES')}
+                        {user.subscription?.trialEndsAt ? new Date(user.subscription.trialEndsAt).toLocaleDateString('es-ES') : ''}
                       </p>
                     )}
                   </div>

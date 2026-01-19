@@ -671,14 +671,16 @@ export default function AppointmentsPage() {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-full max-w-lg max-h-[90vh] overflow-y-auto"
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
             >
               <div
                 className={cn(
-                  'm-4 p-6 rounded-2xl',
+                  'w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-2xl',
                   'bg-white dark:bg-slate-900',
                   'border border-white/20',
-                  'backdrop-blur-xl'
+                  'backdrop-blur-xl',
+                  'shadow-2xl',
+                  'p-6'
                 )}
               >
                 <div className="flex items-center justify-between mb-6">
@@ -862,8 +864,8 @@ export default function AppointmentsPage() {
                       {isLoading
                         ? 'Guardando...'
                         : editingAppointment
-                        ? 'Actualizar'
-                        : 'Crear Cita'}
+                          ? 'Actualizar'
+                          : 'Crear Cita'}
                     </button>
                   </div>
                 </form>

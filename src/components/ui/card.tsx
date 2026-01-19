@@ -14,6 +14,7 @@ interface GlassCardProps {
   padding?: 'none' | 'sm' | 'md' | 'lg'
   className?: string
   children: React.ReactNode
+  onClick?: () => void
 }
 
 export function GlassCard({
@@ -23,6 +24,7 @@ export function GlassCard({
   padding = 'md',
   className,
   children,
+  onClick,
 }: GlassCardProps) {
   const variants = {
     default: 'bg-white dark:bg-slate-900 backdrop-blur-xl border-slate-200 dark:border-slate-700 shadow-xl text-slate-900 dark:text-slate-100',
@@ -40,6 +42,7 @@ export function GlassCard({
 
   return (
     <motion.div
+      onClick={onClick}
       className={cn(
         'rounded-2xl border shadow-xl',
         variants[variant],

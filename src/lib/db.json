@@ -135,17 +135,6 @@
   ],
   "appointments": [
     {
-      "id": "1",
-      "patientId": "1",
-      "patientName": "María García López",
-      "date": "2024-01-20",
-      "time": "10:00",
-      "treatment": "Botox",
-      "status": "confirmed",
-      "price": 350,
-      "notes": "Primera vez con este tratamiento"
-    },
-    {
       "id": "3",
       "patientId": "2",
       "patientName": "Ana Martínez Ruiz",
@@ -158,14 +147,18 @@
     },
     {
       "id": "4",
-      "patientId": "6",
-      "patientName": "Sofia Fernández Mora",
-      "date": "2024-01-21",
-      "time": "09:30",
+      "patientId": "4",
+      "patientName": "Pedro Sánchez",
+      "date": "2026-01-19",
+      "time": "09:00",
       "treatment": "Mesoterapia",
       "status": "confirmed",
-      "price": 280,
-      "notes": "Alérgico a la lidocaína"
+      "price": 120,
+      "notes": "Cliente habitual",
+      "patientPhone": "+34 666 777 888",
+      "treatmentId": "4",
+      "treatmentName": "Limpieza Facial",
+      "duration": 60
     },
     {
       "id": "5",
@@ -301,14 +294,91 @@
         "status": "active",
         "trialEndsAt": "2026-02-02T07:52:02.108Z"
       }
+    },
+    {
+      "id": "1768814439173",
+      "name": "Leonardo",
+      "email": "oxaamgbpn875@oxaam.com",
+      "password": "$2b$10$G38bj.bQrIGRPTzsvHH3Eu5aV1/..w5.PAt8.IFuRqMEIUBbmZt2y",
+      "role": "admin",
+      "clinicName": "ddddddddddddd",
+      "phone": "2134234234",
+      "createdAt": "2026-01-19T09:20:39.173Z",
+      "subscription": {
+        "plan": "trial",
+        "status": "active",
+        "trialEndsAt": "2026-02-02T09:20:39.173Z"
+      }
     }
   ],
-  "stats": {
-    "totalPatients": 156,
-    "monthlyRevenue": 45200,
-    "pendingAppointments": 12,
-    "activeTreatments": 8,
-    "patientGrowth": 12.5,
-    "revenueGrowth": 8.2
+  "marketingStats": {
+    "channels": [
+      {
+        "name": "Instagram",
+        "value": 45,
+        "color": "#E1306C",
+        "spend": 1200,
+        "revenue": 5400
+      },
+      {
+        "name": "Google Ads",
+        "value": 25,
+        "color": "#4285F4",
+        "spend": 1500,
+        "revenue": 3750
+      },
+      {
+        "name": "Recomendaciones",
+        "value": 20,
+        "color": "#0F9D58",
+        "spend": 0,
+        "revenue": 3000
+      },
+      {
+        "name": "TikTok",
+        "value": 10,
+        "color": "#000000",
+        "spend": 800,
+        "revenue": 1500
+      }
+    ],
+    "monthlyEvolution": [
+      {
+        "name": "Ene",
+        "revenue": 15000,
+        "profit": 9000,
+        "spend": 2500
+      },
+      {
+        "name": "Feb",
+        "revenue": 18000,
+        "profit": 11000,
+        "spend": 2800
+      },
+      {
+        "name": "Mar",
+        "revenue": 16000,
+        "profit": 9500,
+        "spend": 2600
+      },
+      {
+        "name": "Abr",
+        "revenue": 21000,
+        "profit": 14000,
+        "spend": 3200
+      },
+      {
+        "name": "May",
+        "revenue": 19000,
+        "profit": 11500,
+        "spend": 3000
+      },
+      {
+        "name": "Jun",
+        "revenue": 24000,
+        "profit": 16000,
+        "spend": 3500
+      }
+    ]
   }
 }

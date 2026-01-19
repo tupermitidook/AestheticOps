@@ -1,6 +1,7 @@
 'use client'
 
 import * as React from 'react'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import {
   LineChart,
@@ -214,6 +215,7 @@ export function StatsWidgets() {
       icon: <DollarSign className="w-5 h-5" />,
       color: 'text-green-500',
       bgColor: 'bg-green-500/10',
+      href: '/dashboard/finance'
     },
     {
       ...defaultStats,
@@ -224,6 +226,7 @@ export function StatsWidgets() {
       icon: <Calendar className="w-5 h-5" />,
       color: 'text-sky-500',
       bgColor: 'bg-sky-500/10',
+      href: '/dashboard/appointments'
     },
     {
       ...defaultStats,
@@ -234,6 +237,7 @@ export function StatsWidgets() {
       icon: <Users className="w-5 h-5" />,
       color: 'text-indigo-500',
       bgColor: 'bg-indigo-500/10',
+      href: '/dashboard/patients'
     },
     {
       ...defaultStats,
@@ -244,6 +248,7 @@ export function StatsWidgets() {
       icon: <Activity className="w-5 h-5" />,
       color: 'text-rose-500',
       bgColor: 'bg-rose-500/10',
+      href: '/dashboard/finance'
     },
   ]
 
@@ -256,32 +261,34 @@ export function StatsWidgets() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: index * 0.1 }}
         >
-          <GlassCard padding="md" hover={true}>
-            <div className="flex items-start justify-between">
-              <div className={cn('p-2 rounded-xl', stat.bgColor)}>
-                <span className={stat.color}>{stat.icon}</span>
+          <Link href={stat.href}>
+            <GlassCard padding="md" hover={true} className="cursor-pointer h-full">
+              <div className="flex items-start justify-between">
+                <div className={cn('p-2 rounded-xl', stat.bgColor)}>
+                  <span className={stat.color}>{stat.icon}</span>
+                </div>
+                <div
+                  className={cn(
+                    'flex items-center gap-1 text-xs font-medium px-2 py-1 rounded-full',
+                    stat.trend === 'up'
+                      ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
+                      : 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400'
+                  )}
+                >
+                  {stat.trend === 'up' ? (
+                    <ArrowUpRight className="w-3 h-3" />
+                  ) : (
+                    <ArrowDownRight className="w-3 h-3" />
+                  )}
+                  {stat.change}
+                </div>
               </div>
-              <div
-                className={cn(
-                  'flex items-center gap-1 text-xs font-medium px-2 py-1 rounded-full',
-                  stat.trend === 'up'
-                    ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
-                    : 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400'
-                )}
-              >
-                {stat.trend === 'up' ? (
-                  <ArrowUpRight className="w-3 h-3" />
-                ) : (
-                  <ArrowDownRight className="w-3 h-3" />
-                )}
-                {stat.change}
+              <div className="mt-4">
+                <p className="text-sm text-muted-foreground">{stat.title}</p>
+                <p className="text-2xl font-bold mt-1">{stat.value}</p>
               </div>
-            </div>
-            <div className="mt-4">
-              <p className="text-sm text-muted-foreground">{stat.title}</p>
-              <p className="text-2xl font-bold mt-1">{stat.value}</p>
-            </div>
-          </GlassCard>
+            </GlassCard>
+          </Link>
         </motion.div>
       ))}
     </div>
