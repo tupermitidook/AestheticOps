@@ -17,18 +17,18 @@ interface NavItem {
 /**
  * Elemento de navegación con efecto hover
  */
-const NavLink = ({ 
-  item, 
-  active 
-}: { 
+const NavLink = ({
+  item,
+  active
+}: {
   item: NavItem
-  active?: boolean 
+  active?: boolean
 }) => {
   const [isOpen, setIsOpen] = React.useState(false)
 
   if (item.children) {
     return (
-      <div 
+      <div
         className="relative"
         onMouseEnter={() => setIsOpen(true)}
         onMouseLeave={() => setIsOpen(false)}
@@ -45,12 +45,12 @@ const NavLink = ({
             isOpen && 'rotate-90'
           )} />
         </button>
-        
+
         {/* Dropdown menu */}
         <motion.div
           initial={{ opacity: 0, y: 10, pointerEvents: 'none' }}
-          animate={{ 
-            opacity: isOpen ? 1 : 0, 
+          animate={{
+            opacity: isOpen ? 1 : 0,
             y: isOpen ? 0 : 10,
             pointerEvents: isOpen ? 'auto' : 'none'
           }}
@@ -104,8 +104,8 @@ export function Navbar() {
   const navItems: NavItem[] = [
     { label: 'Características', href: '#features' },
     { label: 'Precios', href: '#pricing' },
-    { 
-      label: 'Recursos', 
+    {
+      label: 'Recursos',
       href: '#resources',
       children: [
         { label: 'Blog', href: '/blog', description: 'Consejos y tendencias del sector' },
@@ -130,8 +130,8 @@ export function Navbar() {
     <motion.header
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        isScrolled 
-          ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-white/20 shadow-lg' 
+        isScrolled
+          ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-white/20 shadow-lg'
           : 'bg-transparent'
       )}
       initial={{ y: -100 }}
@@ -169,13 +169,13 @@ export function Navbar() {
             <div className="hidden sm:block">
               <ThemeToggle />
             </div>
-            
+
             <div className="hidden md:flex items-center gap-3">
-              <Button variant="ghost" size="sm">
-                Iniciar sesión
+              <Button variant="ghost" size="sm" asChild>
+                <Link href="/login">Iniciar sesión</Link>
               </Button>
-              <Button variant="shimmer" size="sm">
-                Prueba gratis
+              <Button variant="shimmer" size="sm" asChild>
+                <Link href="/register">Prueba gratis</Link>
               </Button>
             </div>
 
@@ -197,7 +197,7 @@ export function Navbar() {
       {/* Menú móvil */}
       <motion.div
         initial={false}
-        animate={{ 
+        animate={{
           height: isMobileMenuOpen ? 'auto' : 0,
           opacity: isMobileMenuOpen ? 1 : 0
         }}
@@ -208,11 +208,11 @@ export function Navbar() {
             <NavLink key={index} item={item} />
           ))}
           <div className="pt-4 border-t border-border space-y-3">
-            <Button variant="ghost" className="w-full justify-start">
-              Iniciar sesión
+            <Button variant="ghost" className="w-full justify-start" asChild>
+              <Link href="/login">Iniciar sesión</Link>
             </Button>
-            <Button variant="shimmer" className="w-full">
-              Prueba gratis
+            <Button variant="shimmer" className="w-full" asChild>
+              <Link href="/register">Prueba gratis</Link>
             </Button>
           </div>
         </div>
@@ -289,7 +289,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-sm text-muted-foreground mb-4">
-              El sistema operativo para la medicina estética moderna. 
+              El sistema operativo para la medicina estética moderna.
               Optimiza tu clínica y deleita a tus pacientes.
             </p>
             {/* Newsletter */}
@@ -315,7 +315,7 @@ export function Footer() {
               <ul className="space-y-3">
                 {section.links.map((link, linkIndex) => (
                   <li key={linkIndex}>
-                    <Link 
+                    <Link
                       href={link.href}
                       className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                     >
@@ -334,7 +334,7 @@ export function Footer() {
             <p className="text-sm text-muted-foreground">
               © {currentYear} AestheticOps. Todos los derechos reservados.
             </p>
-            
+
             {/* Redes sociales */}
             <div className="flex items-center gap-4">
               {socialLinks.map((social, index) => (

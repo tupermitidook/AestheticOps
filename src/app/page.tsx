@@ -1,6 +1,7 @@
 'use client'
 
 import * as React from 'react'
+import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { toast } from 'sonner'
 import { Navbar, Footer } from '@/components/layout/navbar'
@@ -114,7 +115,7 @@ export default function HomePage() {
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-sky-500 via-indigo-500 to-rose-500 opacity-10" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-gradient-to-br from-sky-500/20 via-indigo-500/20 to-rose-500/20 rounded-full blur-3xl" />
-        
+
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -128,11 +129,17 @@ export default function HomePage() {
               Únete a más de 500 clínicas que ya están optimizando sus operaciones con AestheticOps.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button variant="shimmer" size="xl">
-                Iniciar prueba gratuita de 14 días
-                <ChevronRight className="w-5 h-5 ml-2" />
+              <Button variant="shimmer" size="xl" asChild>
+                <Link href="/register">
+                  Iniciar prueba gratuita de 14 días
+                  <ChevronRight className="w-5 h-5 ml-2" />
+                </Link>
               </Button>
-              <Button variant="outline" size="xl">
+              <Button variant="outline" size="xl" onClick={() => {
+                const element = document.getElementById('contact');
+                if (element) element.scrollIntoView({ behavior: 'smooth' });
+                else toast.info('¡Próximamente estaremos en contacto!');
+              }}>
                 Agendar demo personalizada
               </Button>
             </div>

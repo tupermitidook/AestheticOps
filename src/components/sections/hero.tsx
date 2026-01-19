@@ -1,6 +1,7 @@
 'use client'
 
 import * as React from 'react'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { ShimmerButton } from '@/components/ui/button'
@@ -87,7 +88,7 @@ export function HeroSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-xl sm:text-2xl text-muted-foreground max-w-3xl mx-auto mb-10 leading-relaxed"
         >
-          Transforma tu clínica en una máquina de generar resultados excepcionales. 
+          Transforma tu clínica en una máquina de generar resultados excepcionales.
           Automatiza citas, fideliza pacientes y haz crecer tu negocio con{' '}
           <MagneticText>inteligencia artificial</MagneticText> aplicada.
         </motion.p>
@@ -99,20 +100,23 @@ export function HeroSection() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
         >
-          <ShimmerButton size="xl" className="group">
-            Iniciar prueba gratuita
-            <motion.span
-              className="inline-block ml-2"
-              animate={{ x: [0, 5, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            >
-              →
-            </motion.span>
+          <ShimmerButton size="xl" className="group" asChild>
+            <Link href="/register">
+              Iniciar prueba gratuita
+              <motion.span
+                className="inline-block ml-2"
+                animate={{ x: [0, 5, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              >
+                →
+              </motion.span>
+            </Link>
           </ShimmerButton>
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="px-8 py-4 text-lg font-medium rounded-xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300"
+            onClick={() => window.location.href = '/dashboard'}
           >
             Ver demostración
           </motion.button>
@@ -214,7 +218,7 @@ export function LogoCarousel() {
         >
           Confiado por más de 500 clínicas líderes en España y Latinoamérica
         </motion.p>
-        
+
         <div className="relative overflow-hidden">
           <motion.div
             className="flex gap-12 items-center justify-center"
